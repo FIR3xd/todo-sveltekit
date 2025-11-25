@@ -186,7 +186,7 @@
         background: rgba(255, 94, 108, 0.1);
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 800px) {
         .input-row {
             flex-direction: column;
         }
