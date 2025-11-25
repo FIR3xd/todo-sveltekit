@@ -6,20 +6,26 @@
 
     let newTodo = "";
     let todos: Todo[] = [];
+    let totalCount = 0;
+    let doneCount = 0;
 
     function addTodo() {
         if (!newTodo.trim()) return;
-        todos = [...todos, { text: newTodo, done: false }];
+        todos = [...todos, {text: newTodo, done: false}];
         newTodo = "";
+        totalCount++;
     }
 
     function toggleDone(i: number) {
+        if (todos[i].done) doneCount--;
+        else doneCount++;
         todos[i].done = !todos[i].done;
         todos = [...todos];
     }
 
     function removeTodo(i: number) {
         todos = todos.filter((_, idx) => idx !== i);
+        totalCount--;
     }
 </script>
 
@@ -51,6 +57,7 @@
             </li>
         {/each}
     </ul>
+    <p class="caption">Unfinished: {totalCount}, Done totally: {doneCount}</p>
 </div>
 
 <style>
@@ -146,6 +153,11 @@
         flex: 1;
     }
 
+    .caption {
+        text-align: center;
+        color: #777;
+    }
+
     .done {
         text-decoration: line-through;
         opacity: 0.6;
@@ -173,6 +185,10 @@
 
         .add-btn {
             width: 100%;
+        }
+
+        .wrapper {
+            max-width: 100%;
         }
     }
 </style>
