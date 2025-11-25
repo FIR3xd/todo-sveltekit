@@ -17,15 +17,21 @@
     }
 
     function toggleDone(i: number) {
-        if (todos[i].done) doneCount--;
-        else doneCount++;
+        if (todos[i].done) {
+            doneCount--;
+            totalCount++;
+        } else {
+            doneCount++;
+            totalCount--;
+        }
         todos[i].done = !todos[i].done;
         todos = [...todos];
     }
 
     function removeTodo(i: number) {
+        if (todos[i].done) doneCount--;
+        else totalCount--;
         todos = todos.filter((_, idx) => idx !== i);
-        totalCount--;
     }
 </script>
 
@@ -57,7 +63,7 @@
             </li>
         {/each}
     </ul>
-    <p class="caption">Unfinished: {totalCount}, Done totally: {doneCount}</p>
+    <p class="caption">Unfinished: {totalCount}, Finished: {doneCount}</p>
 </div>
 
 <style>
@@ -72,7 +78,7 @@
 
     .wrapper {
         width: 100%;
-        max-width: 600px;
+        max-width: 800px;
         padding: 1.5rem;
         margin-top: 1.5rem;
         background: white;
