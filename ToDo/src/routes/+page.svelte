@@ -70,17 +70,19 @@
     :global(body) {
         margin: 0;
         padding: 0;
+        min-height: 100vh;
         font-family: system-ui, sans-serif;
         background: #f4f4f7;
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     .wrapper {
         width: 100%;
         max-width: 800px;
         padding: 1.5rem;
-        margin-top: 1.5rem;
+        margin: 1.5rem;
         background: white;
         border-radius: 16px;
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
