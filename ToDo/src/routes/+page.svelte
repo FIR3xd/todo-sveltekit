@@ -11,7 +11,7 @@
 
     function addTodo() {
         if (!newTodo.trim()) return;
-        todos = [...todos, {text: newTodo, done: false}];
+        todos = [...todos, { text: newTodo, done: false }];
         newTodo = "";
         totalCount++;
     }
@@ -36,15 +36,15 @@
 </script>
 
 <div class="wrapper">
-    <h1>ToDo List</h1>
+    <h1>Your To Do</h1>
 
     <div class="input-row">
         <input
-                placeholder="Add a task…"
+                placeholder="Add new task"
                 bind:value={newTodo}
                 on:keydown={(e) => e.key === "Enter" && addTodo()}
         />
-        <button class="add-btn" on:click={addTodo}>Add</button>
+        <button class="rounded-btn" on:click={addTodo}><i class="fa-solid fa-plus"></i></button>
     </div>
 
     <ul class="todo-list">
@@ -63,7 +63,15 @@
             </li>
         {/each}
     </ul>
-    <p class="caption">Unfinished: {totalCount}, Finished: {doneCount}</p>
+
+    <p class="remaining">
+        Your remaining todos : {totalCount}
+    </p>
+
+    <p class="quote">
+        "Doing what you love is the cornerstone of having abundance in your life."
+        <br />– Wayne Dyer
+    </p>
 </div>
 
 <style>
@@ -72,99 +80,93 @@
         padding: 0;
         min-height: 100vh;
         font-family: system-ui, sans-serif;
-        background: #f4f4f7;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
     }
 
     .wrapper {
         width: 100%;
-        max-width: 800px;
-        padding: 1.5rem;
-        margin: 1.5rem;
+        max-width: 700px;
+        padding: 2rem 1.5rem;
+        margin-top: 3rem;
         background: white;
-        border-radius: 16px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 20px;
     }
 
     h1 {
-        text-align: center;
-        margin-bottom: 1.3rem;
+        margin-bottom: 1rem;
         font-weight: 700;
+        font-size: 1.8rem;
     }
 
-    /* Input row */
     .input-row {
         display: flex;
-        gap: 0.5rem;
+        align-items: center;
+        gap: 0.7rem;
+        margin-bottom: 1.2rem;
     }
 
     input {
         flex: 1;
-        padding: 0.8rem 1rem;
+        padding: 0.8rem 0rem;
         font-size: 1rem;
-        border: 2px solid #ddd;
-        border-radius: 12px;
+        border: none;
+        border-bottom: 2px solid #ddd;
         outline: none;
-        transition: border 0.2s;
+        transition: 0.2s;
     }
 
     input:focus {
-        border-color: #31bd8c; /* cute purple highlight */
+        border-color: #666;
     }
 
-    .add-btn {
-        padding: 0.8rem 1.4rem;
-        background: #31BD8CFF;
-        color: white;
-        border: none;
+    .rounded-btn {
+        width: 36px;
+        height: 36px;
         border-radius: 12px;
+        border: none;
+        background: #444;
+        color: white;
         font-size: 1rem;
         cursor: pointer;
-        transition: background 0.2s, transform 0.1s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.2s;
     }
 
-    .add-btn:hover {
-        background: #31BD8CFF;
+
+    .rounded-btn:hover {
+        background: #333;
     }
 
-    .add-btn:active {
-        transform: scale(0.97);
-    }
-
-    /* Todo items */
     .todo-list {
         list-style: none;
         padding: 0;
-        margin: 1.3rem 0 0;
         display: flex;
         flex-direction: column;
-        gap: 0.6rem;
+        gap: 0.8rem;
     }
 
     .todo {
-        background: #fafafa;
+        background: white;
+        border: 1px solid #ddd;
         padding: 0.9rem 1rem;
-        border-radius: 12px;
+        border-radius: 14px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
-        border: 1px solid #eaeaea;
     }
 
     label {
         display: flex;
         align-items: center;
         gap: 0.6rem;
-        flex: 1;
     }
 
-    .caption {
-        text-align: center;
-        color: #777;
-    }
+
 
     .done {
         text-decoration: line-through;
@@ -176,7 +178,7 @@
         border: none;
         font-size: 1.1rem;
         cursor: pointer;
-        color: #ff5e6c;
+        color: #c44;
         padding: 0.3rem 0.6rem;
         border-radius: 8px;
         transition: background 0.2s;
@@ -186,17 +188,33 @@
         background: rgba(255, 94, 108, 0.1);
     }
 
-    @media (max-width: 800px) {
-        .input-row {
-            flex-direction: column;
-        }
+    .remaining {
+        margin-top: 1rem;
+        font-weight: 600;
+        color: #555;
+    }
 
-        .add-btn {
-            width: 100%;
-        }
+    .quote {
+        margin-top: 0.5rem;
+        font-style: italic;
+        font-size: 0.9rem;
+        color: #888;
+    }
 
+    /* Responsive */
+    @media (max-width: 600px) {
         .wrapper {
-            max-width: 100%;
+            margin-top: 1rem;
+            padding: 1.2rem;
+        }
+
+        .input-row {
+            gap: 0.5rem;
+        }
+
+        .rounded-btn {
+            width: 36px;
+            height: 36px;
         }
     }
 </style>
